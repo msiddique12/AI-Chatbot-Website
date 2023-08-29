@@ -1,12 +1,12 @@
-const PORT = 8000
 const express = require('express')
 const cors = require('cors')
+const fetch = require('node-fetch') // Import fetch
 
 const app = express()
 
 app.use(cors(
     {
-        origin: ["https://ai-chatbot-api.vercel.app"],
+        origin: ["https://ai-chatbot-website.vercel.app"],
         methods: ["POST", "GET"],
         credentials: true
     }
@@ -37,8 +37,10 @@ app.post('/completions', async (req, res) => {
         res.send(data)
     } catch (error)
     {
-        console.error(error)
+        console.error(error);
+        res.status(500).send({ error: "An error occurred." }); // Handle error and provide response
+    }
     }
 })
 
-app.listen(PORT, () => console.log('Your server is running on port ' + PORT))
+app.listen(process.env.PORT || 8000, () => console.log('Your server is running.'))
