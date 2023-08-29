@@ -1,4 +1,6 @@
 import { useState, useEffect } from "react"
+import React from "react"
+import './index.css';
 
 const App = () => {
   const [value, setValue] = useState(null)
